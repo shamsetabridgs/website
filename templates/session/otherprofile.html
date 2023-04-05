@@ -1,0 +1,54 @@
+{% extends 'basic.html' %}
+{% block body %}
+    <div class="container">
+
+        <div class="col-md-6 offset-md-3">
+            <div class="media">
+            <img src="{{user.userprofile.image.url}}" class="w-50 rounded-circle account-img" alt="">
+            <div class="media-body">
+                Username={{user.username}}<br>
+                Full Name={{user.get_full_name}}<br>
+                Email={{user.email}}<br>
+            </div>
+            </div>
+        
+            {% if user.userprofile %}
+            <div>
+                <b><h3 class="border-bottom m-4"><legend> Personal Information </legend></h3></b>
+                Blood_group = {{user.userprofile.blood_group}}<br>
+                gender      = {{user.userprofile.gender}}<br>
+                nationality = {{user.userprofile.nationality}}<br>
+                religion    = {{user.userprofile.religion}}<br>
+                biodata     = {{user.userprofile.biodata}}<br>
+                profession  = {{user.userprofile.profession}}<br>
+                birth_date  = {{user.userprofile.birth_date}}<br>
+                address     = {{user.userprofile.address}}<br>
+                phone       = {{user.userprofile.phone}}<br>
+            </div>
+            {% endif %}
+
+            {% if user.tuitionprofile %}
+            <div class="my-5">
+                <b><h3 class="border-bottom m-4"><legend> Tuition Related Information </legend></h3></b>
+                district = {{user.tuitionprofile.district}}<br>
+                style    = {{user.tuitionprofile.style}}<br>
+                approach = {{user.tuitionprofile.approach}}<br>
+                medium   = {{user.tuitionprofile.medium}}<br>
+                salary   = {{user.tuitionprofile.salary}}<br>
+                days_per_week={{user.tuitionprofile.days_per_week}}<br>
+                education = {{user.tuitionprofile.education}}<br>
+                status   = {{user.tuitionprofile.status}}<br>
+                Subject  = {% for s in user.tuitionprofile.subject.all %} {{s}}
+                {% if not forloop.last %},{% endif %}
+                {% endfor %}<br>
+                Class  = {% for s in user.tuitionprofile.class_in.all %} {{s}}
+                {% if not forloop.last %},{% endif %}
+                {% endfor %}<br>
+
+            </div>
+            {% endif %}
+        </div>
+    </div> 
+
+
+{% endblock body %}

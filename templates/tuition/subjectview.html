@@ -1,0 +1,20 @@
+{% extends 'basic.html' %}
+{% block body %}
+
+{{sub.name}}<br>
+
+
+{% for p in sub.subject_set.all %}
+{{p.title}} by:
+{{p.user.username}} <br>
+{% endfor %}
+
+
+{% endblock body %}
+
+
+
+
+
+
+
